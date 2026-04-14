@@ -23,7 +23,7 @@ const ServiceList = () => {
         <div>
           <p className="eyebrow">Services</p>
           <h2>Service Catalog</h2>
-          <p className="muted">Manage offerings, pricing, and publishing.</p>
+          <p className="muted">Manage service content, results, and FAQs.</p>
         </div>
         <Link className="primary-button" to="/services/new">
           <LuPlus size={16} />
@@ -38,11 +38,12 @@ const ServiceList = () => {
         {services.map((service) => (
           <article key={service._id} className="card-row blog-card">
             <div className="blog-thumb">
-              {service.imageUrl ? <img src={service.imageUrl} alt={service.title} /> : <div className="thumb-placeholder" />}
+              {service.result?.afterimage ? <img src={service.result.afterimage} alt={service.title} /> : <div className="thumb-placeholder" />}
             </div>
             <div className="blog-body">
+              {service.tag ? <p className="eyebrow">{service.tag}</p> : null}
               <p className="card-title">{service.title}</p>
-              <p className="muted">{service.description}</p>
+              <p className="muted">{service.shortDescription}</p>
             </div>
             <div className="card-actions">
               <Link className="ghost-button" to={`/services/${service._id}`}>

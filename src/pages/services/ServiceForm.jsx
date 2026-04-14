@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchServices } from '../../features/services/serviceSlice'
@@ -14,13 +14,23 @@ const ServiceForm = () => {
   const service = items.find((item) => item._id === id)
   const [submitError, setSubmitError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [beforeImageFile, setBeforeImageFile] = useState(null)
+  const [afterImageFile, setAfterImageFile] = useState(null)
 
-  const { register, handleSubmit, reset } = useForm({
+  const { control, register, handleSubmit, reset } = useForm({
     defaultValues: {
       title: '',
-      description: '',
+      shortDescription: '',
+      tag: '',
+      longdescription: '',
+      resultTitle: '',
+      resultDescription: '',
+      faqs: [{ question: '', answer: '' }],
     },
+  })
+  const { fields: faqFields, append: appendFaq, remove: removeFaq } = useFieldArray({
+    control,
+    name: 'faqs',
   })
 
   useEffect(() => {
@@ -28,23 +38,41 @@ const ServiceForm = () => {
       dispatch(fetchServices())
     }
     if (service) {
-      reset(service)
+      reset({
+        title: service.title || '',
+        shortDescription: service.shortDescription || '',
+        tag: service.tag || '',
+        longdescription: service.longdescription || '',
+        resultTitle: service.result?.title || '',
+        resultDescription: service.result?.description || '',
+        faqs: service.faqs?.length
+          ? service.faqs
+          : [{ question: service.faq?.question || '', answer: service.faq?.answer || '' }],
+      })
     }
   }, [service, reset, status, dispatch])
 
   const onSubmit = async (values) => {
     setSubmitError('')
-    if (!id && !selectedFile) {
-      setSubmitError('Image is required to create a service.')
+    if (!id && (!beforeImageFile || !afterImageFile)) {
+      setSubmitError('Before and after result images are required to create a service.')
       return
     }
     setIsSubmitting(true)
     try {
       const formData = new FormData()
       formData.append('title', values.title)
-      formData.append('description', values.description)
-      if (selectedFile) {
-        formData.append('image', selectedFile)
+      formData.append('shortDescription', values.shortDescription)
+      formData.append('tag', values.tag)
+      formData.append('longdescription', values.longdescription)
+      formData.append('resultTitle', values.resultTitle)
+      formData.append('resultDescription', values.resultDescription)
+      formData.append('faqs', JSON.stringify(values.faqs))
+      if (beforeImageFile) {
+        formData.append('beforeimage', beforeImageFile)
+      }
+      if (afterImageFile) {
+        formData.append('afterimage', afterImageFile)
       }
 
       if (id) {
@@ -70,7 +98,7 @@ const ServiceForm = () => {
         <div>
           <p className="eyebrow">Services</p>
           <h2>{id ? 'Edit Service' : 'Create Service'}</h2>
-          <p className="muted">Define offering details, pricing, and status.</p>
+          <p className="muted">Define service content, result story, and FAQ.</p>
         </div>
       </div>
 
@@ -81,16 +109,73 @@ const ServiceForm = () => {
         </label>
 
         <label className="form-field">
-          <span>Description</span>
-          <textarea rows="5" placeholder="What is included?" {...register('description')} />
+          <span>Short Description</span>
+          <textarea rows="3" placeholder="Short service summary" {...register('shortDescription', { required: true })} />
         </label>
 
         <label className="form-field">
-          <span>Cover Image</span>
-          <input type="file" accept="image/*" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} />
-          {service?.imageUrl ? <p className="form-hint"><span className='text-bold'>Current Image:</span> {service.imageUrl}</p> : null}
-          {selectedFile ? <p className="form-hint"><span className='text-bold'>New Image:</span> {selectedFile.name}</p> : null}
+          <span>Tag</span>
+          <input type="text" placeholder="Service tag" {...register('tag', { required: true })} />
         </label>
+
+        <label className="form-field">
+          <span>Long Description</span>
+          <textarea rows="6" placeholder="Detailed service description" {...register('longdescription', { required: true })} />
+        </label>
+
+        <label className="form-field">
+          <span>Result Title</span>
+          <input type="text" placeholder="Result title" {...register('resultTitle', { required: true })} />
+        </label>
+
+        <label className="form-field">
+          <span>Result Description</span>
+          <textarea rows="4" placeholder="Result story description" {...register('resultDescription', { required: true })} />
+        </label>
+
+        <label className="form-field">
+          <span>Before Image</span>
+          <input type="file" accept="image/*" onChange={(e) => setBeforeImageFile(e.target.files?.[0] || null)} />
+          {service?.result?.beforeimage ? <p className="form-hint"><span className="text-bold">Current Before Image:</span> {service.result.beforeimage}</p> : null}
+          {beforeImageFile ? <p className="form-hint"><span className="text-bold">New Before Image:</span> {beforeImageFile.name}</p> : null}
+        </label>
+
+        <label className="form-field">
+          <span>After Image</span>
+          <input type="file" accept="image/*" onChange={(e) => setAfterImageFile(e.target.files?.[0] || null)} />
+          {service?.result?.afterimage ? <p className="form-hint"><span className="text-bold">Current After Image:</span> {service.result.afterimage}</p> : null}
+          {afterImageFile ? <p className="form-hint"><span className="text-bold">New After Image:</span> {afterImageFile.name}</p> : null}
+        </label>
+
+        <div className="form-field">
+          <span>FAQs</span>
+          {faqFields.map((field, index) => (
+            <div className="stacked-form" key={field.id}>
+              <input
+                type="text"
+                placeholder="Frequently asked question"
+                {...register(`faqs.${index}.question`, { required: true })}
+              />
+              <textarea
+                rows="4"
+                placeholder="FAQ answer"
+                {...register(`faqs.${index}.answer`, { required: true })}
+              />
+              {faqFields.length > 1 ? (
+                <button className="ghost-button danger" type="button" onClick={() => removeFaq(index)}>
+                  Remove FAQ
+                </button>
+              ) : null}
+            </div>
+          ))}
+          <button
+            className="ghost-button"
+            type="button"
+            onClick={() => appendFaq({ question: '', answer: '' })}
+          >
+            Add FAQ
+          </button>
+        </div>
 
         {submitError ? <p className="form-error">{submitError}</p> : null}
 
@@ -100,7 +185,7 @@ const ServiceForm = () => {
           </button>
           <button className="primary-button" type="submit" disabled={isSubmitting}>
             {isSubmitting ? <span className="spinner" /> : null}
-            {isSubmitting ? 'Saving...' : id ? 'Save changes' : 'Create service (requires image via API)'}
+            {isSubmitting ? 'Saving...' : id ? 'Save changes' : 'Create service'}
           </button>
         </div>
       </form>

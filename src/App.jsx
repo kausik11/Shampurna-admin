@@ -73,6 +73,7 @@ function App() {
           <Route path="/gallery/:id" element={<GalleryForm />} />
           <Route path="/requestcallbacks" element={<CallbackList />} />
           <Route path="/requestcallbacks/new" element={<CallbackForm />} />
+          <Route path="/requestcallbacks/:id" element={<CallbackForm />} />
           <Route path="/newsletter" element={<NewsletterList />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/new" element={<UserForm />} />

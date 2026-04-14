@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { LuClock4, LuPencilLine, LuPhone, LuPlus, LuTrash2, LuUserRound, LuStickyNote, LuDownload } from 'react-icons/lu'
+import { LuCalendarClock, LuClock4, LuMail, LuPencilLine, LuPhone, LuPlus, LuUserRound, LuStickyNote, LuDownload } from 'react-icons/lu'
 import { toast } from 'react-toastify'
-import { VALID_STATUSES, deleteCallback, fetchCallbacks, updateCallback } from '../../features/callbacks/callbackSlice'
+import { VALID_STATUSES, fetchCallbacks, updateCallback } from '../../features/callbacks/callbackSlice'
 import * as XLSX from 'xlsx'
 
 const CallbackList = () => {
   const dispatch = useDispatch()
   const { items, status, error } = useSelector((state) => state.callbacks)
   const [updatingId, setUpdatingId] = useState(null)
-  const [deletingId, setDeletingId] = useState(null)
 
   const handleExport = () => {
     if (!items.length) {
@@ -20,6 +19,10 @@ const CallbackList = () => {
     const data = items.map((item) => ({
       Name: item.fullName,
       Phone: item.phoneNumber,
+      Email: item.email || '',
+      PreferredService: item.preferredService || '',
+      PreferredDate: item.preferredDate || '',
+      PreferredTime: item.preferredTime || '',
       Description: item.description || '',
       Status: item.status,
       AdminComment: item.adminComment || '',
@@ -60,17 +63,6 @@ const CallbackList = () => {
     setUpdatingId(null)
   }
 
-  const handleDelete = async (id) => {
-    setDeletingId(id)
-    const result = await dispatch(deleteCallback(id))
-    if (deleteCallback.fulfilled.match(result)) {
-      toast.success('Callback deleted')
-    } else {
-      toast.error(result.payload || 'Failed to delete callback')
-    }
-    setDeletingId(null)
-  }
-
   return (
     <div className="page">
       <div className="page-header">
@@ -106,6 +98,17 @@ const CallbackList = () => {
                   <p className="muted">
                     <LuPhone size={14} /> {item.phoneNumber}
                   </p>
+                  {item.email ? (
+                    <p className="muted">
+                      <LuMail size={14} /> {item.email}
+                    </p>
+                  ) : null}
+                  {item.preferredService ? <p className="muted">Service: {item.preferredService}</p> : null}
+                  {item.preferredDate || item.preferredTime ? (
+                    <p className="muted">
+                      <LuCalendarClock size={14} /> {item.preferredDate || '--'} {item.preferredTime || ''}
+                    </p>
+                  ) : null}
                   {item.description ? <p className="muted">{item.description}</p> : null}
                 </div>
                 <div className="pill">{item.status}</div>
@@ -122,6 +125,10 @@ const CallbackList = () => {
               </div>
             </div>
             <div className="card-actions callback-actions">
+              <Link className="ghost-button ghost-button--solid" to={`/requestcallbacks/${item._id}`}>
+                <LuPencilLine size={16} />
+                Edit
+              </Link>
               <div className="action-cell">
                 <p className="action-label">Status</p>
                 <select
@@ -152,18 +159,6 @@ const CallbackList = () => {
                   Comment
                 </button>
               </div>
-
-              {/* <div className="action-cell">
-                <p className="action-label">Remove</p>
-                <button
-                  className="ghost-button danger ghost-button--solid"
-                  disabled={deletingId === item._id}
-                  onClick={() => handleDelete(item._id)}
-                >
-                  {deletingId === item._id ? <span className="spinner" /> : <LuTrash2 size={16} />}
-                  {deletingId === item._id ? 'Deleting...' : 'Delete'}
-                </button>
-              </div> */}
             </div>
           </article>
         ))}

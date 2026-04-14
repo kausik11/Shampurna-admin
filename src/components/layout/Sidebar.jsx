@@ -10,6 +10,7 @@ const Sidebar = () => {
     { label: 'Services', icon: <LuBriefcase />, to: '/services' },
     { label: 'Treatments', icon: <LuBriefcase />, to: '/treatments' },
     { label: 'Treatment FAQs', icon: <LuBriefcase />, to: '/treatment-faqs' },
+    { label: 'Result Images', icon: <LuBriefcase />, to: '/result-images' },
     { label: 'Youtube Success stories', icon: <LuBriefcase />, to: '/patient-success-stories' },
     { label: 'Testimonials', icon: <LuNewspaper />, to: '/testimonials' },
     { label: 'Patient Query Requests', icon: <LuNewspaper />, to: '/requestcallbacks' },

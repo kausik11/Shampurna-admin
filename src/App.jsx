@@ -23,6 +23,8 @@ import UserList from './pages/users/UserList'
 import UserForm from './pages/users/UserForm'
 import GlobalLoader from './components/common/GlobalLoader'
 import PreferenceEvents from './pages/preferenceEvents/PreferenceEvents'
+import ResultImageList from './pages/resultImages/ResultImageList'
+import ResultImageForm from './pages/resultImages/ResultImageForm'
 
 const ThemeWatcher = () => {
   const theme = useSelector((state) => state.ui.theme)
@@ -64,6 +66,9 @@ function App() {
           <Route path="/patient-success-stories" element={<PatientSuccessList />} />
           <Route path="/patient-success-stories/new" element={<PatientSuccessForm />} />
           <Route path="/patient-success-stories/:id" element={<PatientSuccessForm />} />
+          <Route path="/result-images" element={<ResultImageList />} />
+          <Route path="/result-images/new" element={<ResultImageForm />} />
+          <Route path="/result-images/:id" element={<ResultImageForm />} />
           <Route path="/testimonials" element={<TestimonialList />} />
           <Route path="/testimonials/new" element={<TestimonialForm />} />
           <Route path="/testimonials/:id" element={<TestimonialForm />} />

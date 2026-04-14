@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { LuBriefcase, LuChartBar, LuLayoutDashboard, LuLogOut, LuNewspaper, LuUsers } from 'react-icons/lu'
+import { LuBriefcase, LuLayoutDashboard, LuLogOut, LuNewspaper, LuUsers } from 'react-icons/lu'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../features/auth/authSlice'
 
@@ -8,14 +8,10 @@ const Sidebar = () => {
   const navItems = [
     { label: 'Dashboard', icon: <LuLayoutDashboard />, to: '/' },
     { label: 'Services', icon: <LuBriefcase />, to: '/services' },
-    { label: 'Treatments', icon: <LuBriefcase />, to: '/treatments' },
-    { label: 'Treatment FAQs', icon: <LuBriefcase />, to: '/treatment-faqs' },
     { label: 'Result Images', icon: <LuBriefcase />, to: '/result-images' },
-    { label: 'Youtube Success stories', icon: <LuBriefcase />, to: '/patient-success-stories' },
     { label: 'Testimonials', icon: <LuNewspaper />, to: '/testimonials' },
     { label: 'Patient Query Requests', icon: <LuNewspaper />, to: '/requestcallbacks' },
     { label: 'Newsletter', icon: <LuNewspaper />, to: '/newsletter' },
-    { label: 'Preference Events', icon: <LuChartBar />, to: '/preference-events' },
     { label: 'Admin Users', icon: <LuUsers />, to: '/users' },
   ]
 

@@ -7,12 +7,6 @@ import ProtectedRoute from './components/common/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
-import TreatmentList from './pages/treatments/TreatmentList'
-import TreatmentForm from './pages/treatments/TreatmentForm'
-import TreatmentFaqList from './pages/treatmentFaqs/TreatmentFaqList'
-import TreatmentFaqForm from './pages/treatmentFaqs/TreatmentFaqForm'
-import PatientSuccessList from './pages/patientSuccess/PatientSuccessList'
-import PatientSuccessForm from './pages/patientSuccess/PatientSuccessForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
 import Login from './pages/Login'
@@ -22,7 +16,6 @@ import CallbackForm from './pages/callbacks/CallbackForm'
 import UserList from './pages/users/UserList'
 import UserForm from './pages/users/UserForm'
 import GlobalLoader from './components/common/GlobalLoader'
-import PreferenceEvents from './pages/preferenceEvents/PreferenceEvents'
 import ResultImageList from './pages/resultImages/ResultImageList'
 import ResultImageForm from './pages/resultImages/ResultImageForm'
 
@@ -57,15 +50,6 @@ function App() {
           <Route path="/services" element={<ServiceList />} />
           <Route path="/services/new" element={<ServiceForm />} />
           <Route path="/services/:id" element={<ServiceForm />} />
-          <Route path="/treatments" element={<TreatmentList />} />
-          <Route path="/treatments/new" element={<TreatmentForm />} />
-          <Route path="/treatments/:id" element={<TreatmentForm />} />
-          <Route path="/treatment-faqs" element={<TreatmentFaqList />} />
-          <Route path="/treatment-faqs/new" element={<TreatmentFaqForm />} />
-          <Route path="/treatment-faqs/:id" element={<TreatmentFaqForm />} />
-          <Route path="/patient-success-stories" element={<PatientSuccessList />} />
-          <Route path="/patient-success-stories/new" element={<PatientSuccessForm />} />
-          <Route path="/patient-success-stories/:id" element={<PatientSuccessForm />} />
           <Route path="/result-images" element={<ResultImageList />} />
           <Route path="/result-images/new" element={<ResultImageForm />} />
           <Route path="/result-images/:id" element={<ResultImageForm />} />
@@ -78,7 +62,6 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/users/new" element={<UserForm />} />
           <Route path="/users/:id" element={<UserForm />} />
-          <Route path="/preference-events" element={<PreferenceEvents />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

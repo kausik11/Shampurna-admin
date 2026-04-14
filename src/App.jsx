@@ -22,6 +22,8 @@ import VideoTestimonialList from './pages/videoTestimonials/VideoTestimonialList
 import VideoTestimonialForm from './pages/videoTestimonials/VideoTestimonialForm'
 import FaqList from './pages/faqs/FaqList'
 import FaqForm from './pages/faqs/FaqForm'
+import GalleryList from './pages/gallery/GalleryList'
+import GalleryForm from './pages/gallery/GalleryForm'
 
 const ThemeWatcher = () => {
   const theme = useSelector((state) => state.ui.theme)
@@ -66,6 +68,9 @@ function App() {
           <Route path="/faqs" element={<FaqList />} />
           <Route path="/faqs/new" element={<FaqForm />} />
           <Route path="/faqs/:id" element={<FaqForm />} />
+          <Route path="/gallery" element={<GalleryList />} />
+          <Route path="/gallery/new" element={<GalleryForm />} />
+          <Route path="/gallery/:id" element={<GalleryForm />} />
           <Route path="/requestcallbacks" element={<CallbackList />} />
           <Route path="/requestcallbacks/new" element={<CallbackForm />} />
           <Route path="/newsletter" element={<NewsletterList />} />

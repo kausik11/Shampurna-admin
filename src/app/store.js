@@ -9,6 +9,7 @@ import callbackReducer from '../features/callbacks/callbackSlice'
 import resultImageReducer from '../features/resultImages/resultImageSlice'
 import videoTestimonialReducer from '../features/videoTestimonials/videoTestimonialSlice'
 import faqReducer from '../features/faqs/faqSlice'
+import galleryReducer from '../features/gallery/gallerySlice'
 import { injectStore } from '../api/axios'
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
     resultImages: resultImageReducer,
     videoTestimonials: videoTestimonialReducer,
     faqs: faqReducer,
+    gallery: galleryReducer,
   },
 })
 

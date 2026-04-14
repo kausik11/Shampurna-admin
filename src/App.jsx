@@ -20,6 +20,8 @@ import ResultImageList from './pages/resultImages/ResultImageList'
 import ResultImageForm from './pages/resultImages/ResultImageForm'
 import VideoTestimonialList from './pages/videoTestimonials/VideoTestimonialList'
 import VideoTestimonialForm from './pages/videoTestimonials/VideoTestimonialForm'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
 
 const ThemeWatcher = () => {
   const theme = useSelector((state) => state.ui.theme)
@@ -61,6 +63,9 @@ function App() {
           <Route path="/video-testimonials" element={<VideoTestimonialList />} />
           <Route path="/video-testimonials/new" element={<VideoTestimonialForm />} />
           <Route path="/video-testimonials/:id" element={<VideoTestimonialForm />} />
+          <Route path="/faqs" element={<FaqList />} />
+          <Route path="/faqs/new" element={<FaqForm />} />
+          <Route path="/faqs/:id" element={<FaqForm />} />
           <Route path="/requestcallbacks" element={<CallbackList />} />
           <Route path="/requestcallbacks/new" element={<CallbackForm />} />
           <Route path="/newsletter" element={<NewsletterList />} />

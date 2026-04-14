@@ -7,6 +7,7 @@ import uiReducer from '../features/ui/uiSlice'
 import newsletterReducer from '../features/newsletter/newsletterSlice'
 import callbackReducer from '../features/callbacks/callbackSlice'
 import resultImageReducer from '../features/resultImages/resultImageSlice'
+import videoTestimonialReducer from '../features/videoTestimonials/videoTestimonialSlice'
 import { injectStore } from '../api/axios'
 
 const store = configureStore({
@@ -19,6 +20,7 @@ const store = configureStore({
     newsletter: newsletterReducer,
     callbacks: callbackReducer,
     resultImages: resultImageReducer,
+    videoTestimonials: videoTestimonialReducer,
   },
 })
 

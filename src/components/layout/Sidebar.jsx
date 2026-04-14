@@ -10,6 +10,7 @@ const Sidebar = () => {
     { label: 'Services', icon: <LuBriefcase />, to: '/services' },
     { label: 'Result Images', icon: <LuBriefcase />, to: '/result-images' },
     { label: 'Testimonials', icon: <LuNewspaper />, to: '/testimonials' },
+    { label: 'Video Testimonials', icon: <LuNewspaper />, to: '/video-testimonials' },
     { label: 'Patient Query Requests', icon: <LuNewspaper />, to: '/requestcallbacks' },
     { label: 'Newsletter', icon: <LuNewspaper />, to: '/newsletter' },
     { label: 'Admin Users', icon: <LuUsers />, to: '/users' },

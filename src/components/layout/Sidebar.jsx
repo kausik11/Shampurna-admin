@@ -7,18 +7,10 @@ const Sidebar = () => {
   const dispatch = useDispatch()
   const navItems = [
     { label: 'Dashboard', icon: <LuLayoutDashboard />, to: '/' },
-    { label: 'Blogs', icon: <LuNewspaper />, to: '/blogs' },
     { label: 'Services', icon: <LuBriefcase />, to: '/services' },
     { label: 'Treatments', icon: <LuBriefcase />, to: '/treatments' },
     { label: 'Treatment FAQs', icon: <LuBriefcase />, to: '/treatment-faqs' },
-    { label: 'Upcoming Events', icon: <LuBriefcase />, to: '/upcoming-events' },
-    { label: 'Ongoing Events', icon: <LuBriefcase />, to: '/ongoing-events' },
     { label: 'Youtube Success stories', icon: <LuBriefcase />, to: '/patient-success-stories' },
-    { label: 'Contact us requests', icon: <LuBriefcase />, to: '/contacts' },
-    { label: 'Our Locations', icon: <LuBriefcase />, to: '/addresses' },
-    { label: 'Ebooks', icon: <LuBriefcase />, to: '/ebooks' },
-    { label: 'Applications', icon: <LuBriefcase />, to: '/applications' },
-    { label: 'Jobs', icon: <LuBriefcase />, to: '/jobs' },
     { label: 'Testimonials', icon: <LuNewspaper />, to: '/testimonials' },
     { label: 'Patient Query Requests', icon: <LuNewspaper />, to: '/requestcallbacks' },
     { label: 'Newsletter', icon: <LuNewspaper />, to: '/newsletter' },

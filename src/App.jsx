@@ -5,30 +5,16 @@ import { ToastContainer } from 'react-toastify'
 import AppLayout from './components/layout/AppLayout'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
-import BlogList from './pages/blogs/BlogList'
-import BlogForm from './pages/blogs/BlogForm'
 import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
 import TreatmentList from './pages/treatments/TreatmentList'
 import TreatmentForm from './pages/treatments/TreatmentForm'
 import TreatmentFaqList from './pages/treatmentFaqs/TreatmentFaqList'
 import TreatmentFaqForm from './pages/treatmentFaqs/TreatmentFaqForm'
-import UpcomingEventList from './pages/upcomingEvents/UpcomingEventList'
-import UpcomingEventForm from './pages/upcomingEvents/UpcomingEventForm'
-import OngoingEventList from './pages/ongoingEvents/OngoingEventList'
-import OngoingEventForm from './pages/ongoingEvents/OngoingEventForm'
 import PatientSuccessList from './pages/patientSuccess/PatientSuccessList'
 import PatientSuccessForm from './pages/patientSuccess/PatientSuccessForm'
-import ContactList from './pages/contacts/ContactList'
-import AddressList from './pages/addresses/AddressList'
-import AddressForm from './pages/addresses/AddressForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
-import EbookList from './pages/ebooks/EbookList'
-import EbookForm from './pages/ebooks/EbookForm'
-import ApplicationList from './pages/applications/ApplicationList'
-import JobList from './pages/jobs/JobList'
-import JobForm from './pages/jobs/JobForm'
 import Login from './pages/Login'
 import NewsletterList from './pages/newsletter/NewsletterList'
 import CallbackList from './pages/callbacks/CallbackList'
@@ -66,9 +52,6 @@ function App() {
           }
         >
           <Route index element={<Dashboard />} />
-          <Route path="/blogs" element={<BlogList />} />
-          <Route path="/blogs/new" element={<BlogForm />} />
-          <Route path="/blogs/:id" element={<BlogForm />} />
           <Route path="/services" element={<ServiceList />} />
           <Route path="/services/new" element={<ServiceForm />} />
           <Route path="/services/:id" element={<ServiceForm />} />
@@ -78,26 +61,9 @@ function App() {
           <Route path="/treatment-faqs" element={<TreatmentFaqList />} />
           <Route path="/treatment-faqs/new" element={<TreatmentFaqForm />} />
           <Route path="/treatment-faqs/:id" element={<TreatmentFaqForm />} />
-          <Route path="/upcoming-events" element={<UpcomingEventList />} />
-          <Route path="/upcoming-events/new" element={<UpcomingEventForm />} />
-          <Route path="/upcoming-events/:id" element={<UpcomingEventForm />} />
-          <Route path="/ongoing-events" element={<OngoingEventList />} />
-          <Route path="/ongoing-events/new" element={<OngoingEventForm />} />
-          <Route path="/ongoing-events/:id" element={<OngoingEventForm />} />
           <Route path="/patient-success-stories" element={<PatientSuccessList />} />
           <Route path="/patient-success-stories/new" element={<PatientSuccessForm />} />
           <Route path="/patient-success-stories/:id" element={<PatientSuccessForm />} />
-          <Route path="/contacts" element={<ContactList />} />
-          <Route path="/addresses" element={<AddressList />} />
-          <Route path="/addresses/new" element={<AddressForm />} />
-          <Route path="/addresses/:id" element={<AddressForm />} />
-          <Route path="/ebooks" element={<EbookList />} />
-          <Route path="/ebooks/new" element={<EbookForm />} />
-          <Route path="/ebooks/:id" element={<EbookForm />} />
-          <Route path="/applications" element={<ApplicationList />} />
-          <Route path="/jobs" element={<JobList />} />
-          <Route path="/jobs/new" element={<JobForm />} />
-          <Route path="/jobs/:id" element={<JobForm />} />
           <Route path="/testimonials" element={<TestimonialList />} />
           <Route path="/testimonials/new" element={<TestimonialForm />} />
           <Route path="/testimonials/:id" element={<TestimonialForm />} />

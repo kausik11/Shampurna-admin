@@ -1,18 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '../features/auth/authSlice'
-import blogReducer from '../features/blogs/blogSlice'
 import serviceReducer from '../features/services/serviceSlice'
 import testimonialReducer from '../features/testimonials/testimonialSlice'
 import treatmentReducer from '../features/treatments/treatmentSlice'
 import treatmentFaqReducer from '../features/treatmentFaqs/treatmentFaqSlice'
-import upcomingEventReducer from '../features/upcomingEvents/upcomingEventSlice'
-import ongoingEventReducer from '../features/ongoingEvents/ongoingEventSlice'
 import patientSuccessReducer from '../features/patientSuccess/patientSuccessSlice'
-import contactsReducer from '../features/contacts/contactSlice'
-import addressesReducer from '../features/addresses/addressSlice'
-import ebooksReducer from '../features/ebooks/ebookSlice'
-import applicationsReducer from '../features/applications/applicationSlice'
-import jobsReducer from '../features/jobs/jobSlice'
 import userReducer from '../features/users/userSlice'
 import uiReducer from '../features/ui/uiSlice'
 import newsletterReducer from '../features/newsletter/newsletterSlice'
@@ -22,19 +14,11 @@ import { injectStore } from '../api/axios'
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    blogs: blogReducer,
     services: serviceReducer,
     testimonials: testimonialReducer,
     treatments: treatmentReducer,
     treatmentFaqs: treatmentFaqReducer,
-    upcomingEvents: upcomingEventReducer,
-    ongoingEvents: ongoingEventReducer,
     patientSuccess: patientSuccessReducer,
-    contacts: contactsReducer,
-    addresses: addressesReducer,
-    ebooks: ebooksReducer,
-    applications: applicationsReducer,
-    jobs: jobsReducer,
     users: userReducer,
     ui: uiReducer,
     newsletter: newsletterReducer,

@@ -22,6 +22,9 @@ const ServiceForm = () => {
       title: '',
       shortDescription: '',
       tag: '',
+      priceLabel: 'Pricing',
+      priceValue: '',
+      priceNote: '',
       longdescription: '',
       resultTitle: '',
       resultDescription: '',
@@ -42,6 +45,9 @@ const ServiceForm = () => {
         title: service.title || '',
         shortDescription: service.shortDescription || '',
         tag: service.tag || '',
+        priceLabel: service.priceLabel || 'Pricing',
+        priceValue: service.priceValue || '',
+        priceNote: service.priceNote || '',
         longdescription: service.longdescription || '',
         resultTitle: service.result?.title || '',
         resultDescription: service.result?.description || '',
@@ -64,6 +70,9 @@ const ServiceForm = () => {
       formData.append('title', values.title)
       formData.append('shortDescription', values.shortDescription)
       formData.append('tag', values.tag)
+      formData.append('priceLabel', values.priceLabel)
+      formData.append('priceValue', values.priceValue)
+      formData.append('priceNote', values.priceNote)
       formData.append('longdescription', values.longdescription)
       formData.append('resultTitle', values.resultTitle)
       formData.append('resultDescription', values.resultDescription)
@@ -116,6 +125,21 @@ const ServiceForm = () => {
         <label className="form-field">
           <span>Tag</span>
           <input type="text" placeholder="Service tag" {...register('tag', { required: true })} />
+        </label>
+
+        <label className="form-field">
+          <span>Price Label</span>
+          <input type="text" placeholder="Starting from, Per session, Fixed price" {...register('priceLabel')} />
+        </label>
+
+        <label className="form-field">
+          <span>Price</span>
+          <input type="text" placeholder="Rs. 3,000" {...register('priceValue', { required: true })} />
+        </label>
+
+        <label className="form-field">
+          <span>Price Note</span>
+          <input type="text" placeholder="Area based, Laser facial, Service-specific quote" {...register('priceNote')} />
         </label>
 
         <label className="form-field">

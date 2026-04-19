@@ -43,6 +43,10 @@ const ServiceList = () => {
             <div className="blog-body">
               {service.tag ? <p className="eyebrow">{service.tag}</p> : null}
               <p className="card-title">{service.title}</p>
+              <p className="muted">
+                {[service.priceLabel, service.priceValue].filter(Boolean).join(': ')}
+                {service.priceNote ? ` (${service.priceNote})` : ''}
+              </p>
               <p className="muted">{service.shortDescription}</p>
             </div>
             <div className="card-actions">
